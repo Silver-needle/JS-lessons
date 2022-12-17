@@ -9,16 +9,16 @@
 </head>
 
 <body>
+  <form action="submit.html" method="post">
+    <input type="text" name="login">
+    <div class="error"></div>
+    <button>Отправить</button>
+  </form>
   <script>
     "use strict";
 
-    window.addEventListener('resize', event => {
-      // console.log(window.innerWidth, window.innerHeight);
-      console.log(
-        // Не включая размер ползунка скролл-бар
-        document.documentElement.clientWidth,
-        document.documentElement.clientHeight,
-      );
+    document.querySelector('form').addEventListener('submit', event => {
+
     });
   </script>
 </body>
