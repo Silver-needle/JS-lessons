@@ -14,8 +14,8 @@ class Slider {
   }
 
   init() {
-    this.sliderEl.style.width = `${this.width} px`;
-    this.sliderEl.style.height = `${this.height} px`;
+    this.sliderEl.style.width = `${this.width}px`;
+    this.sliderEl.style.height = `${this.height}px`;
 
     const leftArrow = document.createElement('i');
     leftArrow.classList.add('fas', 'fa-chevron-circle-left', 'slider-leftArrow');
@@ -25,9 +25,34 @@ class Slider {
     rightArrow.classList.add('fas', 'fa-chevron-circle-right', 'slider-rightArrow');
     this.sliderEl.append(rightArrow);
 
+    const run = () => {
+      leftArrow.addEventListener('click', () => {
+        this.slides[this.slideIdx].classList.add('hidden-slide');
+        if (this.slideIdx === 0) {
+          this.slideIdx = this.slides.length - 1;
+        } else {
+          this.slideIdx--;
+        }
+        this.slides[this.slideIdx].classList.remove('hidden-slide');
+        
+      });
+
+      rightArrow.addEventListener('click', () => {
+        this.slides[this.slideIdx].classList.add('hidden-slide');
+        if (this.slideIdx === this.slides.length - 1) {
+          this.slideIdx = 0;
+        } else {
+          this.slideIdx++;
+        }
+        this.slides[this.slideIdx].classList.remove('hidden-slide');
+      });
+
+      this.slides[this.slideIdx].classList.remove('hidden-slide');
+    };
+
     const firstImg = this.slides[this.slideIdx].querySelector('img');
     if (firstImg.complete) {
-      console.log('запуск слайдера');
+      run();
       return;
     };
 
@@ -36,12 +61,12 @@ class Slider {
     this.sliderEl.prepend(loadIcon);
 
     firstImg.addEventListener('load', () => {
-      console.log('запуск слайдера');
       loadIcon.remove();
+      run();
     });
   }
+  setNextSlide
 }
-
 const slider = new Slider('.slider', {
   width: 720,
   height: 480,
