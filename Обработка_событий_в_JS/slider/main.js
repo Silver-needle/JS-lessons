@@ -7,5 +7,5 @@ const slider = new Slider('.slider', {
 slider.init();
 
 setInterval(() => {
-  slider.
+  slider.setNextSlide();
 }, 2000)

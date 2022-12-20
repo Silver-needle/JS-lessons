@@ -27,24 +27,12 @@ class Slider {
 
     const run = () => {
       leftArrow.addEventListener('click', () => {
-        this.slides[this.slideIdx].classList.add('hidden-slide');
-        if (this.slideIdx === 0) {
-          this.slideIdx = this.slides.length - 1;
-        } else {
-          this.slideIdx--;
-        }
-        this.slides[this.slideIdx].classList.remove('hidden-slide');
+        this.setPrevSlide();
         
       });
 
       rightArrow.addEventListener('click', () => {
-        this.slides[this.slideIdx].classList.add('hidden-slide');
-        if (this.slideIdx === this.slides.length - 1) {
-          this.slideIdx = 0;
-        } else {
-          this.slideIdx++;
-        }
-        this.slides[this.slideIdx].classList.remove('hidden-slide');
+        this.setNextSlide();
       });
 
       this.slides[this.slideIdx].classList.remove('hidden-slide');
@@ -65,10 +53,27 @@ class Slider {
       run();
     });
   }
-  setNextSlide
+  setNextSlide() {
+    this.slides[this.slideIdx].classList.add('hidden-slide');
+    if (this.slideIdx === this.slides.length - 1) {
+      this.slideIdx = 0;
+    } else {
+      this.slideIdx++;
+    }
+    this.slides[this.slideIdx].classList.remove('hidden-slide');
+  }
+  setPrevSlide() {
+    this.slides[this.slideIdx].classList.add('hidden-slide');
+        if (this.slideIdx === 0) {
+          this.slideIdx = this.slides.length - 1;
+        } else {
+          this.slideIdx--;
+        }
+        this.slides[this.slideIdx].classList.remove('hidden-slide');
+  }
 }
-const slider = new Slider('.slider', {
-  width: 720,
-  height: 480,
-});
-slider.init();
+// const slider = new Slider('.slider', {
+//   width: 720,
+//   height: 480,
+// });
+// slider.init();
